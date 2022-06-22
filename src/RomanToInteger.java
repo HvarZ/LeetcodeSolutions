@@ -2,7 +2,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class RomanToInteger {
-    private static Map<Character, Integer> romanNumbers = new HashMap<>(){{
+    private static final Map<Character, Integer> romanNumbers = new HashMap<>(){{
         put('I', 1);
         put('V', 5);
         put('X', 10);
@@ -14,28 +14,13 @@ public class RomanToInteger {
 
     public static int romanToInt(String s) {
         int result = 0;
-        int current, next = 0;
-        for (int i = 0; i < s.length() - 1; ++i) {
-            current = romanNumbers.get(s.charAt(i));
-            next = romanNumbers.get(s.charAt(i + 1));
-            if (current < next) {
-                result += (next - current);
-                ++i;
+        for (int i = 0; i < s.length(); ++i) {
+            if (i < s.length() - 1 && romanNumbers.get(s.charAt(i)) < romanNumbers.get(s.charAt(i + 1))) {
+                result -= romanNumbers.get(s.charAt(i));
             } else {
-                result += current;
+                result += romanNumbers.get(s.charAt(i));
             }
         }
-        if (s.length() == 1) {
-            result += romanNumbers.get(s.charAt(0));
-        } else if (s.length() > 1 && (romanNumbers.get(s.charAt(s.length() - 1)) <= romanNumbers.get(s.charAt(s.length() - 2)))) {
-            result += romanNumbers.get(s.charAt(s.length() - 1));
-        }
         return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(romanToInt("MCMXCIV"));
-        System.out.println(romanToInt("MDCXCV"));
-        System.out.println(romanToInt("D"));
     }
 }
