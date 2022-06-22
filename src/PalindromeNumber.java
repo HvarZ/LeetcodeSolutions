@@ -1,17 +1,22 @@
+import java.util.Stack;
+
 public class PalindromeNumber {
     public static boolean isPalindrome(int x) {
-        String stringNumber = String.valueOf(x);
-
-        for (int i = 0; i < stringNumber.length() / 2; ++i) {
-            if (stringNumber.charAt(i) != stringNumber.charAt(stringNumber.length() - 1 - i)) {
-                return false;
-            }
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
         }
-        return true;
+
+        int revertedNumber = 0;
+        while (revertedNumber < x) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == revertedNumber || x == revertedNumber / 10;
     }
 
 
     public static void main(String... args) {
-        System.out.println(isPalindrome(15531));
+        System.out.println(isPalindrome(10));
     }
 }
