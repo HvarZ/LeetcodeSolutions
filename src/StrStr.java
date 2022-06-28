@@ -15,8 +15,4 @@ public class StrStr {
         }
         return index;
     }
-
-    public static void main(String[] args) {
-        System.out.println(strStr("hello", "ll"));
-    }
 }
