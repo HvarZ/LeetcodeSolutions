@@ -18,25 +18,19 @@ public class RemoveNodeEndOfList {
 
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode currentSizeCheck = head, currentDeleting = head;
-        int sizeCounter = 0, passCounter = 0;
+        ListNode nextNode = new ListNode(0, head);
+        ListNode first = nextNode, second = nextNode;
 
-        while (currentSizeCheck.next != null) {
-            sizeCounter++;
-            currentSizeCheck = currentSizeCheck.next;
+        for (int i = 0; i < n; ++i) {
+            first = first.next;
         }
 
-        while (currentDeleting.next != null && passCounter != sizeCounter - n) {
-            passCounter++;
-            currentDeleting = currentDeleting.next;
+        while (first.next != null) {
+            first = first.next;
+            second = second.next;
         }
+        second.next = second.next.next;
 
-        if (passCounter > sizeCounter - n){
-            head = head.next;
-        } else {
-            currentDeleting.next = currentDeleting.next == null ? null : currentDeleting.next.next;
-        }
-
-        return head;
+        return nextNode.next;
     }
 }
