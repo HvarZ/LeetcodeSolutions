@@ -5,7 +5,7 @@ import java.util.List;
 public class NumberWithSameConsecutiveDifferences {
     public static int[] numsSameConsecDiff(int n, int k) {
         if (n == 1) {
-            return new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            return new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
         }
 
         List<Integer> queue = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -29,11 +29,5 @@ public class NumberWithSameConsecutiveDifferences {
         }
 
         return queue.stream().mapToInt(i -> i).toArray();
-    }
-
-    public static void main(String[] args) {
-        int[] result = numsSameConsecDiff(3, 7);
-
-        Arrays.stream(result).forEach(System.out::println);
     }
 }
