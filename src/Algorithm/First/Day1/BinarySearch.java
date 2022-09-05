@@ -1,4 +1,4 @@
-package Algorithm.First;
+package Algorithm.First.Day1;
 
 public class BinarySearch {
     public int search(int[] nums, int target) {
