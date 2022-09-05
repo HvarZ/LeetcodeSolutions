@@ -1,24 +1,19 @@
 package Algorithm.First;
 
 public class BinarySearch {
-    public static int search(int[] nums, int target) {
+    public int search(int[] nums, int target) {
         int start = 0;
-        int finish = nums.length;
+        int finish = nums.length - 1;
+
         while (start <= finish) {
-            int middle = start + (finish - start) / 2;
-            if (nums[middle] < target) {
-                if (middle == start) {
-                    return -1;
-                }
-                start = middle;
-            } else if (nums[middle] > target) {
-                if (middle == finish) {
-                    return -1;
-                }
-                finish = middle;
-            } else {
-                return middle;
+            int mid = (start + finish) / 2;
+            if (nums[mid] == target) {
+                return mid;
             }
+            else if (target > nums[mid]) {
+                start = mid + 1;
+            }
+            else finish = mid - 1;
         }
         return -1;
     }
