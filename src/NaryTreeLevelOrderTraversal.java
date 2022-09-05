@@ -25,26 +25,21 @@ public class NaryTreeLevelOrderTraversal {
             return new ArrayList<>();
         }
         List<List<Integer>> result = new ArrayList<>();
-        result.add(List.of(root.val));
-
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            Queue<Node> temp = new LinkedList<>();
             List<Integer> currentLevel = new ArrayList<>();
-            while (!queue.isEmpty()) {
-                Node current = queue.remove();
-                currentLevel.addAll(current.children.stream().mapToInt(x -> x.val).boxed().toList());
-                temp.addAll(current.children);
+
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; ++i) {
+                Node currentNode = queue.poll();
+
+                currentLevel.add(currentNode.val);
+                queue.addAll(currentNode.children);
             }
-            queue = temp;
-            if (!currentLevel.isEmpty()) {
-                result.add(currentLevel);
-            }
+            result.add(currentLevel);
         }
-
-
         return result;
     }
 }
