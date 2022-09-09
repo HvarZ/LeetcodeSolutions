@@ -1,3 +1,5 @@
+package Algorithm.First.Day5;
+
 public class RemoveNodeEndOfList {
     public static class ListNode {
         int val;
